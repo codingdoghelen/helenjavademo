@@ -10,20 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//@RestController
-////@RequestMapping(value = "/api")
-//public class MyController {
-//
-//    @GetMapping(path="/welcome")
-//    public String welcome(){
-//        return "Hello World";
-//    }
-//}
-
-
 @RestController
-@RequestMapping("api")
-@Api(value = "HelloWorld Resource", description = "shows hello world")
+@RequestMapping("/api")
+@Api(value = "HelloWorld Resource")
 public class MyController {
 
     @ApiOperation(value = "Returns Hello World")
