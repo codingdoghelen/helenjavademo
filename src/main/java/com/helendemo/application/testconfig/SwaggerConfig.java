@@ -24,11 +24,23 @@ public class SwaggerConfig {
     @Bean
     public Docket allApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("USER")
+                .groupName("default")
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
+                .build()
+                .apiInfo(commonInfo());
+    }
+
+    @Bean
+    public Docket userApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("user")
+                .useDefaultResponseMessages(false)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.regex("/api/user/.*"))
                 .build()
                 .apiInfo(commonInfo());
     }
