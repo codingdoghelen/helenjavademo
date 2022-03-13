@@ -22,20 +22,19 @@ public class SwaggerConfig {
                 .version("1.0")
                 .build();
     }
-    //    @Bean
-//    public Docket allApi() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("INTERNAL")
-//                .useDefaultResponseMessages(false)
-//                .select()
-//                .apis(RequestHandlerSelectors.any())
-//                .paths(PathSelectors.any())
-//                .build()
-//                .apiInfo(commonInfo());
-//    }
+        @Bean
+    public Docket allApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .useDefaultResponseMessages(false)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(commonInfo());
+    }
 
     @Bean
-    public Docket allApi() {
+    public Docket extApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .protocols(Collections.singleton("https"))
                 .groupName("EXTERNAL")
@@ -49,7 +48,7 @@ public class SwaggerConfig {
 
 
     @Bean
-    public Docket userApi() {
+    public Docket intApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .protocols(Collections.singleton("https"))
                 .groupName("INTERNAL")
