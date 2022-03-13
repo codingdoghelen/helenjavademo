@@ -26,10 +26,18 @@ public class GenerateSwagger {
     public void generateSwagger() throws Exception {
         File evalFile = new File("./src/main/swagger/swagger.json");
         MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-        mockMvc.perform(MockMvcRequestBuilders.get("/myapi/v2/api-docs").accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.get("/v2/api-docs").accept(MediaType.APPLICATION_JSON))
                 .andDo((result) -> {
-                    Logger logger = LogManager.getLogger(result.getResponse());
-                    logger.info(result.getResponse().getContentAsString());
+                    FileUtils.writeStringToFile(evalFile, result.getResponse().getContentAsString(),"UTF-8");
+                });
+    }
+
+    @Test
+    public void generateExtSwagger() throws Exception {
+        File evalFile = new File("./src/main/swagger/swagger_ext.json");
+        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        mockMvc.perform(MockMvcRequestBuilders.get("/v2/api-docs?group=EXTERNAL").accept(MediaType.APPLICATION_JSON))
+                .andDo((result) -> {
                     FileUtils.writeStringToFile(evalFile, result.getResponse().getContentAsString(),"UTF-8");
                 });
     }
