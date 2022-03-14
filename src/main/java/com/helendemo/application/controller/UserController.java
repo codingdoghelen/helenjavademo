@@ -32,7 +32,7 @@ public class UserController {
 
     private class User {
 
-        @ApiModelProperty(notes = "name of the User")
+        @ApiModelProperty(notes = "name of the User", required = true)
         private String userName;
 
         @ApiModelProperty(notes = "salary of the user")

@@ -39,6 +39,6 @@ public class GenerateSwagger {
         mockMvc.perform(MockMvcRequestBuilders.get("/v2/api-docs?group=EXTERNAL").accept(MediaType.APPLICATION_JSON))
                 .andDo((result) -> {
                     FileUtils.writeStringToFile(evalFile, result.getResponse().getContentAsString(),"UTF-8");
-                }); 
+                });
     }
 }
