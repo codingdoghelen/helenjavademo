@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// TESTING
-
 @RestController
 @RequestMapping("/api")
 @Api(value = "HelloWorld Resource")
