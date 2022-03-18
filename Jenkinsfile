@@ -5,8 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh '
                 sh 'chmod +x gradlew'
-                sh './gradlew assemble'
+                sh './gradlew build'
                 echo 'End Building..'
             }
         }
@@ -15,7 +16,24 @@ pipeline {
                 echo 'Testing..'
                 sh './gradlew test'
                 echo 'End Testing..'
+                withCredentials([usernamePassword(credentialsId: 'graceGithub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')])
+                {
+                    sh("git stash")
+                    sh("git checkout release") 
+                    sh("git pull")
+                    sh("git checkout -b tmp")
+                    sh("git checkout release") 
+                    sh("git merge tmp")     
+                    sh("git branch -d tmp")
+
+                    sh ('git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/codingdoghelen/java-springboot-api-demo.git')
+                    sh ("git push -u origin release")
+                    echo 'test push'
+                    //sh("git push")
+
+
             }
+
         }
 //        stage('Build Docker image') {
 //            steps {
