@@ -18,6 +18,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'graceGithub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')])
                 {
                     sh("git stash")
+                    sh("git branch -a")
                     sh("git checkout release") 
                     sh("git pull")
                     sh("git checkout -b tmp")
