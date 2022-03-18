@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'chmod +x gradlew'
-                sh './gradlew build'
+                sh './gradlew assemble'
                 echo 'End Building..'
             }
         }
