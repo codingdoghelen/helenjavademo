@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'chmod +x gradlew'
-                sh './gradlew assemble'
+                sh './gradlew build'
                 echo 'End Building..'
             }
         }
@@ -29,10 +29,8 @@ pipeline {
                     sh ("git push -u origin release")
                     echo 'test push'
                     //sh("git push")
-
-
+                }
             }
-
         }
 //        stage('Build Docker image') {
 //            steps {
