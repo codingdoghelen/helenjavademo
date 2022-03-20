@@ -19,7 +19,8 @@ pipeline {
                     //sh("git stash")                   
                     //sh("git branch -d tmp") 
                     sh('git checkout -B tmp')
-                    
+                    sh('git config --global user.email \"wychuaf@gmail.com\"')
+                    sh('git config --global user.name "Grace Jenkins"')
                     sh('chmod +x gradlew')
                    
 		            echo 'Testing..'
