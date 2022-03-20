@@ -20,14 +20,14 @@ public class UserController {
     public List<User> getUsers() {
 
         return Arrays.asList(
-                new User("Sam", 2000L),
-                new User("Peter", 1000L)
+                new User("Sam", 2000L,"id01"),
+                new User("Peter", 1000L,"id02")
         );
     }
 
     @GetMapping("/{userName}")
     public User getUser(@PathVariable("userName") final String userName) {
-        return new User(userName, 1000L);
+        return new User(userName, 1000L,"idTesting");
     }
 
     private class User {
@@ -38,9 +38,13 @@ public class UserController {
         @ApiModelProperty(notes = "salary of the user")
         private Long salary;
 
-        public User(String userName, Long salary) {
+        @ApiModelProperty(notes = "id of the user")
+        private String userId;
+
+        public User(String userName, Long salary, String userId) {
             this.userName = userName;
             this.salary = salary;
+            this.userId = userId;
         }
 
         public String getUserName() {
@@ -49,6 +53,14 @@ public class UserController {
 
         public void setUserName(String userName) {
             this.userName = userName;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
         }
 
         public Long getSalary() {
