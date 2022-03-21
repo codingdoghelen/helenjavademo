@@ -10,17 +10,18 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'graceGithub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')])
             {
                 dir('../generateapicommon_helen') {
-                    sh 'git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/github.com/GraceCWY/GenerateAPICommon.git'
-                    sh 'git branch'
-                    sh 'git checkout dev'
-                    //checkout([
-                    //    $class: 'GitSCM',
-                    //    branches: [[name: "release" ]],
-                    //    extensions: [[$class: 'PruneStaleBranch']],
-                    //    userRemoteConfigs: [[
-                    //        url: '$GIT_USERNAME:$GIT_PASSWORD@github.com/GraceCWY/GenerateAPICommon.git',
-                    //    ]]
-                    //])
+                    //sh 'git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/github.com/GraceCWY/GenerateAPICommon.git'
+                    //sh 'git branch'
+                    //sh 'git checkout dev'
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: "release" ]],
+                        extensions: [[$class: 'PruneStaleBranch']],
+                        userRemoteConfigs: [[
+                            credentialsId: graceGithub
+                            url: 'github.com/GraceCWY/GenerateAPICommon.git',
+                        ]]
+                    ])
                 }
 
                 //dir('java-springboot-api-demo') {
