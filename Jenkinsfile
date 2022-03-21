@@ -10,7 +10,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'graceGithub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')])
             {
                 dir('../generateapicommon_helen') {
-                    sh 'git clone https://github.com/github.com/GraceCWY/GenerateAPICommon.git'
+                    sh 'git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/github.com/GraceCWY/GenerateAPICommon.git'
                     sh 'git branch'
                     sh 'git checkout dev'
                     //checkout([
