@@ -10,26 +10,28 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'graceGithub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')])
             {
                 dir('../generateapicommon_helen') {
-                    checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: "release" ]],
-                        extensions: [[$class: 'PruneStaleBranch']],
-                        userRemoteConfigs: [[
-                            url: '$GIT_USERNAME:$GIT_PASSWORD@github.com/GraceCWY/GenerateAPICommon.git',
-                        ]]
-                    ])
+                    sh 'git config remote.origin.url https://github.com/codingdoghelen/java-springboot-api-demo.git'
+                    sh 'git checkout dev'
+                    //checkout([
+                    //    $class: 'GitSCM',
+                    //    branches: [[name: "release" ]],
+                    //    extensions: [[$class: 'PruneStaleBranch']],
+                    //    userRemoteConfigs: [[
+                    //        url: '$GIT_USERNAME:$GIT_PASSWORD@github.com/GraceCWY/GenerateAPICommon.git',
+                    //    ]]
+                    //])
                 }
 
-                dir('java-springboot-api-demo') {
-                    checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: "dev" ]],
-                        extensions: [[$class: 'PruneStaleBranch']],
-                        userRemoteConfigs: [[
-                            url: '$GIT_USERNAME:$GIT_PASSWORD@github.com/codingdoghelen/java-springboot-api-demo.git',
-                        ]]
-                    ])
-                }
+                //dir('java-springboot-api-demo') {
+                //    checkout([
+                //        $class: 'GitSCM',
+                //        branches: [[name: "dev" ]],
+                //        extensions: [[$class: 'PruneStaleBranch']],
+                //        userRemoteConfigs: [[
+                //            url: '$GIT_USERNAME:$GIT_PASSWORD@github.com/codingdoghelen/java-springboot-api-demo.git',
+                //       ]]
+                //    ])
+                //}
             }
         }
     }
