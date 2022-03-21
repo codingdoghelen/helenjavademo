@@ -18,7 +18,7 @@ pipeline {
                         branches: [[name: "release" ]],
                         extensions: [[$class: 'PruneStaleBranch']],
                         userRemoteConfigs: [[
-                            credentialsId: graceGithub,
+                            credentialsId: 'graceGithub',
                             url: 'github.com/GraceCWY/GenerateAPICommon.git',
                         ]]
                     ])
