@@ -10,7 +10,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'graceGithub', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')])
             {
                 dir('../generateapicommon_helen') {
-                    sh 'git config remote.origin.url https://github.com/codingdoghelen/java-springboot-api-demo.git'
+                    sh 'git clone https://github.com/codingdoghelen/java-springboot-api-demo.git'
                     sh 'git checkout dev'
                     //checkout([
                     //    $class: 'GitSCM',
