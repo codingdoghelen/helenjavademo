@@ -51,7 +51,6 @@ pipeline {
                  sh 'git commit -m "copy json from swagger"'
                  //sh ('git remote set-url origin https://$BITBUCKET_USERNAME:$BITBUCKET_PASSWORD@bitbucket.org/helenwong11/generateapicommon_helen.git')
                  sh ("git push -u origin dev")
-                '''
            }
         }
     }
